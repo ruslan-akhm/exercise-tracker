@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Track Your Exercises!</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+    <script src="/server.js" defer></script>
+    <script> //prevent submission of empty fields
+      function disableEmptyInputs(form) {
+        let from = document.getElementById('from');
+        let to = document.getElementById('to');
+        let limit = document.getElementById('limit');
+        if(from.value==""){
+          from.disabled = true;
+        }
+        if(to.value==""){
+          to.disabled = true;
+        }
+        if(limit.value==""){
+          limit.disabled = true
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <div id="head"><h1>Exercise Tracker</h1></div>
+    </header>
+    <main>
+       <div id="forms">
+         <div id="create-form-parent">
+           <div class="forms-title">Create New User</div> 
+           <form action="/api/exercise/new-user" method="POST">
+             <input id="user" type="text" name="user" placeholder="username">  
+             <input type="submit" value="Create" class="create">
+           </form>
+         </div>
+         <div id="update-form-parent">
+           <div class="forms-title">Add exercises</div> 
+           <form action="/api/exercise/add" method="POST">
+             <input id="id" type="text" name="id" placeholder="user id*" required>
+             <input id="description" type="text" name="description" placeholder="description*" required>
+             <input id="duration" type="text" name="duration" placeholder="duration (minutes)*" required>
+             <input id="date" type="text" name="date" placeholder="date">
+             <input type="submit" value="Add" class="update">
+           </form>
+         </div>
+         <div id="get-form-parent">
+           <div class="forms-title">Check my profile</div> 
+           <form action="/api/exercise/log" method="GET" onsubmit="disableEmptyInputs(this)">
+             <input id="userId" type="text" name="userId" placeholder="user id*" required>
+              <input id="from" type="text" name="from" placeholder="date to look from">
+             <input id="to" type="text" name="to" placeholder="date to look up to">
+             <input id="limit" type="text" name="limit" placeholder="number of logs to show"> 
+             <input type="submit" value="Check" class="get">
+           </form>
+         </div>
+        </div>
+    </main>
+
+   
+  </body>
+</html>
