@@ -3,7 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const shortid = require("shortid")
 const User = require("./user")
-var db="mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
+var db="mongodb+srv://<username>:<password>@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
 mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 var db = mongoose.connection;
 //mongoose.set('useFindAndModify', false);
